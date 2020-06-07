@@ -3,7 +3,7 @@
 !gradle/wrapper/gradle-wrapper.jar
 .DS_Store
 **/.DS_Store/
-/bin/
+bin/
 **/gradlew.bat
 ### STS ###
 .apt_generated
