@@ -53,4 +53,4 @@ spring init \
 
 cd ..
 
-# com.zina
+# com.zina.

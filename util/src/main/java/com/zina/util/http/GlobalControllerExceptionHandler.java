@@ -5,8 +5,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.web.bind.annotation.*;
-import com.zinautil.exceptions.InvalidInputException;
-import com.zinautil.exceptions.NotFoundException;
+import com.zina.util.exceptions.InvalidInputException;
+import com.zina.util.exceptions.NotFoundException;
 
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;

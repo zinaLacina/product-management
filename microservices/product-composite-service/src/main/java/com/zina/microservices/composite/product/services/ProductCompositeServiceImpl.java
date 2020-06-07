@@ -2,12 +2,12 @@ package com.zina.microservices.composite.product.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.zinaapi.composite.product.*;
-import com.zinaapi.core.product.Product;
-import com.zinaapi.core.recommendation.Recommendation;
-import com.zinaapi.core.review.Review;
-import com.zinautil.exceptions.NotFoundException;
-import com.zinautil.http.ServiceUtil;
+import com.zina.api.composite.product.*;
+import com.zina.api.core.product.Product;
+import com.zina.api.core.recommendation.Recommendation;
+import com.zina.api.core.review.Review;
+import com.zina.util.exceptions.NotFoundException;
+import com.zina.util.http.ServiceUtil;
 
 import java.util.List;
 import java.util.stream.Collectors;
