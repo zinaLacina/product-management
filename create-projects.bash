@@ -53,4 +53,4 @@ spring init \
 
 cd ..
 
-# se.magnus
+# com.zina

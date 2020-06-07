@@ -4,11 +4,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.zina.api.core.product.Product;
-import com.zina.api.core.product.ProductService;
-import com.zina.util.exceptions.InvalidInputException;
-import com.zina.util.exceptions.NotFoundException;
-import com.zina.util.http.ServiceUtil;
+import com.zinaapi.core.product.Product;
+import com.zinaapi.core.product.ProductService;
+import com.zinautil.exceptions.InvalidInputException;
+import com.zinautil.exceptions.NotFoundException;
+import com.zinautil.http.ServiceUtil;
 
 @RestController
 public class ProductServiceImpl implements ProductService {
@@ -26,9 +26,11 @@ public class ProductServiceImpl implements ProductService {
     public Product getProduct(int productId) {
         LOG.debug("/product return the found product for productId={}", productId);
 
-        if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
+        if (productId < 1)
+            throw new InvalidInputException("Invalid productId: " + productId);
 
-        if (productId == 13) throw new NotFoundException("No product found for productId: " + productId);
+        if (productId == 13)
+            throw new NotFoundException("No product found for productId: " + productId);
 
         return new Product(productId, "name-" + productId, 123, serviceUtil.getServiceAddress());
     }

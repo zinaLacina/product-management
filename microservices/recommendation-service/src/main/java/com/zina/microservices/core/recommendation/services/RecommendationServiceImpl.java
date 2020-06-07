@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.zina.api.core.recommendation.Recommendation;
-import com.zina.api.core.recommendation.RecommendationService;
-import com.zina.util.exceptions.InvalidInputException;
-import com.zina.util.http.ServiceUtil;
+import com.zinaapi.core.recommendation.Recommendation;
+import com.zinaapi.core.recommendation.RecommendationService;
+import com.zinautil.exceptions.InvalidInputException;
+import com.zinautil.http.ServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,12 @@ public class RecommendationServiceImpl implements RecommendationService {
     @Override
     public List<Recommendation> getRecommendations(int productId) {
 
-        if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
+        if (productId < 1)
+            throw new InvalidInputException("Invalid productId: " + productId);
 
         if (productId == 113) {
             LOG.debug("No recommendations found for productId: {}", productId);
-            return  new ArrayList<>();
+            return new ArrayList<>();
         }
 
         List<Recommendation> list = new ArrayList<>();

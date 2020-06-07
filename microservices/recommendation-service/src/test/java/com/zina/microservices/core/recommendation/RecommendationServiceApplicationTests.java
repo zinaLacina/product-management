@@ -13,7 +13,7 @@ import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment=RANDOM_PORT)
+@SpringBootTest(webEnvironment = RANDOM_PORT)
 public class RecommendationServiceApplicationTests {
 
 	@Autowired
@@ -24,43 +24,26 @@ public class RecommendationServiceApplicationTests {
 
 		int productId = 1;
 
-		client.get()
-			.uri("/recommendation?productId=" + productId)
-			.accept(APPLICATION_JSON_UTF8)
-			.exchange()
-			.expectStatus().isOk()
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
-			.expectBody()
-			.jsonPath("$.length()").isEqualTo(3)
-			.jsonPath("$[0].productId").isEqualTo(productId);
+		client.get().uri("/recommendation?productId=" + productId).accept(APPLICATION_JSON_UTF8).exchange()
+				.expectStatus().isOk().expectHeader().contentType(APPLICATION_JSON_UTF8).expectBody()
+				.jsonPath("$.length()").isEqualTo(3).jsonPath("$[0].productId").isEqualTo(productId);
 	}
 
 	@Test
 	public void getRecommendationsMissingParameter() {
 
-		client.get()
-			.uri("/recommendation")
-			.accept(APPLICATION_JSON_UTF8)
-			.exchange()
-			.expectStatus().isEqualTo(BAD_REQUEST)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
-			.expectBody()
-			.jsonPath("$.path").isEqualTo("/recommendation")
-			.jsonPath("$.message").isEqualTo("Required int parameter 'productId' is not present");
+		client.get().uri("/recommendation").accept(APPLICATION_JSON_UTF8).exchange().expectStatus()
+				.isEqualTo(BAD_REQUEST).expectHeader().contentType(APPLICATION_JSON_UTF8).expectBody()
+				.jsonPath("$.path").isEqualTo("/recommendation").jsonPath("$.message")
+				.isEqualTo("Required int parameter 'productId' is not present");
 	}
 
 	@Test
 	public void getRecommendationsInvalidParameter() {
 
-		client.get()
-			.uri("/recommendation?productId=no-integer")
-			.accept(APPLICATION_JSON_UTF8)
-			.exchange()
-			.expectStatus().isEqualTo(BAD_REQUEST)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
-			.expectBody()
-			.jsonPath("$.path").isEqualTo("/recommendation")
-			.jsonPath("$.message").isEqualTo("Type mismatch.");
+		client.get().uri("/recommendation?productId=no-integer").accept(APPLICATION_JSON_UTF8).exchange().expectStatus()
+				.isEqualTo(BAD_REQUEST).expectHeader().contentType(APPLICATION_JSON_UTF8).expectBody()
+				.jsonPath("$.path").isEqualTo("/recommendation").jsonPath("$.message").isEqualTo("Type mismatch.");
 	}
 
 	@Test
@@ -68,14 +51,9 @@ public class RecommendationServiceApplicationTests {
 
 		int productIdNotFound = 113;
 
-		client.get()
-			.uri("/recommendation?productId=" + productIdNotFound)
-			.accept(APPLICATION_JSON_UTF8)
-			.exchange()
-			.expectStatus().isOk()
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
-			.expectBody()
-			.jsonPath("$.length()").isEqualTo(0);
+		client.get().uri("/recommendation?productId=" + productIdNotFound).accept(APPLICATION_JSON_UTF8).exchange()
+				.expectStatus().isOk().expectHeader().contentType(APPLICATION_JSON_UTF8).expectBody()
+				.jsonPath("$.length()").isEqualTo(0);
 	}
 
 	@Test
@@ -83,14 +61,9 @@ public class RecommendationServiceApplicationTests {
 
 		int productIdInvalid = -1;
 
-		client.get()
-			.uri("/recommendation?productId=" + productIdInvalid)
-			.accept(APPLICATION_JSON_UTF8)
-			.exchange()
-			.expectStatus().isEqualTo(UNPROCESSABLE_ENTITY)
-			.expectHeader().contentType(APPLICATION_JSON_UTF8)
-			.expectBody()
-			.jsonPath("$.path").isEqualTo("/recommendation")
-			.jsonPath("$.message").isEqualTo("Invalid productId: " + productIdInvalid);
+		client.get().uri("/recommendation?productId=" + productIdInvalid).accept(APPLICATION_JSON_UTF8).exchange()
+				.expectStatus().isEqualTo(UNPROCESSABLE_ENTITY).expectHeader().contentType(APPLICATION_JSON_UTF8)
+				.expectBody().jsonPath("$.path").isEqualTo("/recommendation").jsonPath("$.message")
+				.isEqualTo("Invalid productId: " + productIdInvalid);
 	}
 }

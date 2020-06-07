@@ -1,11 +1,9 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.0.RC1'
+		springBootVersion = '2.1.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
-		maven { url "https://repo.spring.io/snapshot" }
-		maven { url "https://repo.spring.io/milestone" }
 	}
 	dependencies {
 		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
@@ -13,7 +11,6 @@ buildscript {
 }
 
 apply plugin: 'java'
-apply plugin: "idea"
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
@@ -22,18 +19,29 @@ group = 'com.zina.microservices.composite.product'
 version = '1.0.0-SNAPSHOT'
 sourceCompatibility = 11
 
-repositories {
-	mavenCentral()
-	maven { url "https://repo.spring.io/snapshot" }
-	maven { url "https://repo.spring.io/milestone" }
+ext {
+//	springfoxVersion = "3.0.0-SNAPSHOT"
+	springfoxVersion = "3.0.0-20190808.104142"
 }
 
+repositories {
+	mavenCentral()
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
+}
 
 dependencies {
 	implementation project(':api')
 	implementation project(':util')
 	implementation('org.springframework.boot:spring-boot-starter-actuator')
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation("io.springfox:springfox-swagger2:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-ui:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-swagger-common:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-webflux:${springfoxVersion}-31")
+	implementation("io.springfox:springfox-spi:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-core:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-schema:${springfoxVersion}-39")
+	implementation("io.springfox:springfox-spring-web:${springfoxVersion}-38")
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 	testImplementation('io.projectreactor:reactor-test')
 }

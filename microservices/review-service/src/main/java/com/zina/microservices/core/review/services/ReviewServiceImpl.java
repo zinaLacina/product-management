@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
-import com.zina.api.core.review.Review;
-import com.zina.api.core.review.ReviewService;
-import com.zina.util.exceptions.InvalidInputException;
-import com.zina.util.http.ServiceUtil;
+import com.zinaapi.core.review.Review;
+import com.zinaapi.core.review.ReviewService;
+import com.zinautil.exceptions.InvalidInputException;
+import com.zinautil.http.ServiceUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,11 +27,12 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public List<Review> getReviews(int productId) {
 
-        if (productId < 1) throw new InvalidInputException("Invalid productId: " + productId);
+        if (productId < 1)
+            throw new InvalidInputException("Invalid productId: " + productId);
 
         if (productId == 213) {
             LOG.debug("No reviews found for productId: {}", productId);
-            return  new ArrayList<>();
+            return new ArrayList<>();
         }
 
         List<Review> list = new ArrayList<>();

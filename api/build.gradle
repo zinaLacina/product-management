@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '2.1.0.RC1'
+		springBootVersion = '2.1.0.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -19,7 +19,6 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
-apply plugin: "idea"
 
 group = 'com.zina.microservices.api'
 version = '1.0.0-SNAPSHOT'
@@ -29,10 +28,12 @@ repositories {
 	mavenCentral()
 	maven { url "https://repo.spring.io/snapshot" }
 	maven { url "https://repo.spring.io/milestone" }
+	maven { url 'http://oss.jfrog.org/artifactory/oss-snapshot-local/' }
 }
 
 dependencies {
 	implementation('org.springframework.boot:spring-boot-starter-webflux')
+	implementation('io.springfox:springfox-swagger2:3.0.0-SNAPSHOT')
 	testImplementation('org.springframework.boot:spring-boot-starter-test')
 }
 
