@@ -10,6 +10,7 @@ public class HttpErrorInfo {
     private final HttpStatus httpStatus;
     private final String message;
 
+
     public HttpErrorInfo() {
         timestamp = null;
         this.httpStatus = null;
