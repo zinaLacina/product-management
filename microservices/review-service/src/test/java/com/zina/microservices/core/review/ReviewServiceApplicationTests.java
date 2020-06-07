@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.messaging.Sink;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,9 @@ import static com.zina.api.event.Event.Type.DELETE;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT, properties = { "logging.level.com.zina=DEBUG",
+		"eureka.client.enabled=false", "spring.cloud.config.enabled=false",
 		"spring.datasource.url=jdbc:h2:mem:review-db" })
+@AutoConfigureWebTestClient(timeout = "10000")
 public class ReviewServiceApplicationTests {
 
 	@Autowired

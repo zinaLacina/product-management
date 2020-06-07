@@ -24,7 +24,7 @@ public interface ProductCompositeService {
             @ApiResponse(code = 400, message = "Bad Request, invalid format of the request. See response message for more information."),
             @ApiResponse(code = 422, message = "Unprocessable entity, input parameters caused the processing to fail. See response message for more information.") })
     @PostMapping(value = "/product-composite", consumes = "application/json")
-    void createCompositeProduct(@RequestBody ProductAggregate body);
+    Mono<Void> createCompositeProduct(@RequestBody ProductAggregate body);
 
     /**
      * Sample usage: curl $HOST:$PORT/product-composite/1
@@ -38,7 +38,9 @@ public interface ProductCompositeService {
             @ApiResponse(code = 404, message = "Not found, the specified id does not exist."),
             @ApiResponse(code = 422, message = "Unprocessable entity, input parameters caused the processing to fail. See response message for more information.") })
     @GetMapping(value = "/product-composite/{productId}", produces = "application/json")
-    Mono<ProductAggregate> getCompositeProduct(@PathVariable int productId);
+    Mono<ProductAggregate> getCompositeProduct(@PathVariable int productId,
+            @RequestParam(value = "delay", required = false, defaultValue = "0") int delay,
+            @RequestParam(value = "faultPercent", required = false, defaultValue = "0") int faultPercent);
 
     /**
      * Sample usage:
@@ -52,5 +54,5 @@ public interface ProductCompositeService {
             @ApiResponse(code = 400, message = "Bad Request, invalid format of the request. See response message for more information."),
             @ApiResponse(code = 422, message = "Unprocessable entity, input parameters caused the processing to fail. See response message for more information.") })
     @DeleteMapping(value = "/product-composite/{productId}")
-    void deleteCompositeProduct(@PathVariable int productId);
+    Mono<Void> deleteCompositeProduct(@PathVariable int productId);
 }

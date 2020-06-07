@@ -28,7 +28,8 @@ import static com.zina.api.event.Event.Type.CREATE;
 import static com.zina.api.event.Event.Type.DELETE;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = RANDOM_PORT, properties = { "spring.data.mongodb.port: 0" })
+@SpringBootTest(webEnvironment = RANDOM_PORT, properties = { "spring.data.mongodb.port: 0",
+		"eureka.client.enabled=false", "spring.cloud.config.enabled=false" })
 @AutoConfigureWebTestClient(timeout = "10000")
 public class RecommendationServiceApplicationTests {
 
